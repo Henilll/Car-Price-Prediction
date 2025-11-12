@@ -129,7 +129,8 @@ if page == "🏠 Home":
         st.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
         if st.button("🔮 Try Prediction Now", key="try_now", use_container_width=False):
             st.session_state["page"] = "💰 Price Predictor"
-            st.experimental_rerun()
+            st.rerun()
+
         st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("""
@@ -222,3 +223,4 @@ elif page == "👤 About Developer":
             <p>Building intelligent products that make data accessible and useful.</p>
         </div>
     """, unsafe_allow_html=True)
+
