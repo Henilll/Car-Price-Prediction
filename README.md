@@ -92,7 +92,7 @@ Then open your browser at 👉 http://localhost:8501
 **Contact:** +91 9714033439  
 
 ### 🔗 Connect with Me
-LinkedIn: https://www.linkedin.com/in/henilbhavsar  
+LinkedIn:https://www.linkedin.com/in/henil-bhavsar-18b45b311/  
 GitHub: https://github.com/Henilll
 
 ---
