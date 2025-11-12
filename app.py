@@ -64,31 +64,27 @@ st.markdown("""
 model = joblib.load("car_price_model.pkl")
 model_columns = joblib.load("model_columns.pkl")
 
-# -------------------- NAVIGATION --------------------
-st.sidebar.title("🚗 Car Price App")
-
-# Initialize session state for navigation
+# -------------------- SESSION STATE NAVIGATION --------------------
 if "page" not in st.session_state:
     st.session_state["page"] = "🏠 Home"
 
 # Sidebar navigation
+st.sidebar.title("🚗 Car Price App")
 page = st.sidebar.radio(
     "Navigate",
     ["🏠 Home", "💰 Price Predictor", "👤 About Developer"],
     index=["🏠 Home", "💰 Price Predictor", "👤 About Developer"].index(st.session_state["page"])
 )
+st.session_state["page"] = page
 
 # -------------------- HOME PAGE --------------------
 if page == "🏠 Home":
-    st.markdown(
-        """
+    st.markdown("""
         <div style="text-align:center; padding:30px 0;">
             <h1 class="gradient-text" style="font-size:48px; margin-bottom:10px;">Car Price Predictor</h1>
             <p style="font-size:20px; color:#adb5bd;">AI-driven insights to estimate your car's market value in seconds.</p>
         </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    """, unsafe_allow_html=True)
 
     st.image(
         "https://cdn.dribbble.com/users/1770290/screenshots/15444518/media/f6e2b20b63d96d1180f5fcdf52f9da55.gif",
@@ -127,27 +123,21 @@ if page == "🏠 Home":
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div style="text-align:center;">
-            if st.button("🔮 Try Prediction Now", key="try_now", use_container_width=False):
-                st.session_state["page"] = "💰 Price Predictor"
-                st.experimental_rerun()
+    # Working navigation button
+    center = st.container()
+    with center:
+        st.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
+        if st.button("🔮 Try Prediction Now", key="try_now", use_container_width=False):
+            st.session_state["page"] = "💰 Price Predictor"
+            st.experimental_rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
 
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        """
+    st.markdown("""
         <div class="footer">
             <p>Developed by <b>Henil Bhavsar</b> | Data Science Enthusiast 🧠</p>
             <p>© 2025 All Rights Reserved</p>
         </div>
-        """,
-        unsafe_allow_html=True
-    )
+    """, unsafe_allow_html=True)
 
 # -------------------- PRICE PREDICTOR --------------------
 elif page == "💰 Price Predictor":
@@ -191,11 +181,6 @@ elif page == "👤 About Developer":
         </div>
     """, unsafe_allow_html=True)
 
-    # Banner Image
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    # Info Layout
     col1, col2 = st.columns([1, 2])
 
     with col1:
@@ -216,7 +201,6 @@ elif page == "👤 About Developer":
         </div>
         """, unsafe_allow_html=True)
 
-    # Social Links
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
         <div style="text-align:center;">
@@ -232,13 +216,9 @@ elif page == "👤 About Developer":
         </div>
     """, unsafe_allow_html=True)
 
-    st.markdown(
-        """
+    st.markdown("""
         <div class="footer">
             <p>💡 Passionate about Data Science, Machine Learning & Web App Development.</p>
             <p>Building intelligent products that make data accessible and useful.</p>
         </div>
-        """,
-        unsafe_allow_html=True
-    )
-
+    """, unsafe_allow_html=True)
