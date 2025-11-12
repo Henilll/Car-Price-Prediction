@@ -66,7 +66,17 @@ model_columns = joblib.load("model_columns.pkl")
 
 # -------------------- NAVIGATION --------------------
 st.sidebar.title("🚗 Car Price App")
-page = st.sidebar.radio("Navigate", ["🏠 Home", "💰 Price Predictor", "👤 About Developer"])
+
+# Initialize session state for navigation
+if "page" not in st.session_state:
+    st.session_state["page"] = "🏠 Home"
+
+# Sidebar navigation
+page = st.sidebar.radio(
+    "Navigate",
+    ["🏠 Home", "💰 Price Predictor", "👤 About Developer"],
+    index=["🏠 Home", "💰 Price Predictor", "👤 About Developer"].index(st.session_state["page"])
+)
 
 # -------------------- HOME PAGE --------------------
 if page == "🏠 Home":
@@ -120,19 +130,10 @@ if page == "🏠 Home":
     st.markdown(
         """
         <div style="text-align:center;">
-            <a href="?page=💰+Price+Predictor">
-                <button style="
-                    background: linear-gradient(90deg, #00b4d8, #0077b6);
-                    color:white;
-                    border:none;
-                    padding:15px 40px;
-                    border-radius:50px;
-                    font-size:1.2rem;
-                    cursor:pointer;
-                    transition: all 0.3s ease;">
-                    🔮 Try Prediction Now
-                </button>
-            </a>
+            if st.button("🔮 Try Prediction Now", key="try_now", use_container_width=False):
+                st.session_state["page"] = "💰 Price Predictor"
+                st.experimental_rerun()
+
         </div>
         """,
         unsafe_allow_html=True
@@ -240,3 +241,4 @@ elif page == "👤 About Developer":
         """,
         unsafe_allow_html=True
     )
+
